@@ -1,0 +1,201 @@
+%
+%%% \textwidth = 6.5 in
+%%% \textheight = 9 in
+%%% \oddsidemargin = 0.0 in
+%%% \evensidemargin = 0.0 in
+%%% \topmargin = 0.0 in
+%%% \headheight = 0.0 in
+%%% \headsep = 0.0 in
+%%% \parskip = 0.2in
+%%% \parindent = 0.0in
+%
+%\newcounter{l2}
+%\newcommand{\balphlist}{\begin{list}{(\alph{l2})}{\usecounter{l2}}}
+%
+%% Theorems
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{example}[theorem]{Example}
+%\newtheorem{result}{Result}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{code}{Code}
+%%\newtheorem{algorithm}{Algorithm}
+%%\newtheorem{problem}{The Identification Problem}
+%\renewcommand{\thm}[1]{\begin{theorem} #1 \end{theorem}}
+%\renewcommand{\rem}[1]{\begin{remark} #1 \end{remark}}
+%%\newcommand{\lem}[1]{\begin{lemma} #1 \end{lemma}}
+%%\newcommand{\cor}[1]{\begin{corollary} #1 \end{corollary}}
+%\renewcommand{\prop}[1]{\begin{proposition} #1 \end{proposition}}
+%%\newcommand{\defn}[1]{\begin{definition} #1 \end{definition}}
+%\newcommand{\ex}[1]{\begin{example}\normalfont #1 \hfill $\Box$ \end{example}}
+%%\newcommand{\prf}[1]{\begin{proof}\normalfont #1 \hfill $\blacksquare$ \end{proof}}
+%\newcommand{\prf}[1]{{\em Proof:} \, #1 \hfill $\blacksquare$}
+
+%% \newtheorem{proof}% name
+%%   {}%      Space above, empty = `usual value'
+%%   {}%      Space below
+%%   {}% Body font
+%%   {\parindent}% Indent amount (empty = no indent, \parindent = para indent)
+%% %  {}% Indent amount (empty = no indent, \parindent = para indent)
+%%   {\bf}% Thm head font
+%%   {:}%        Punctuation after thm head
+%%   {}%     Space after thm head: " " = normal interword space;
+%%         %       \newline = linebreak
+%%   {}% Thm head spec
+%% \theoremstyle{proof}
+
+
+
+
+% Numbering
+%\numberwithin{theorem}{section}
+%\numberwithin{lemma}{section}
+%\numberwithin{corollary}{section}
+%\numberwithin{proposition}{section}
+%\numberwithin{definition}{section}
+%\numberwithin{equation}{section}
+%\numberwithin{example}{section}
+%\numberwithin{code}{section}
+%\numberwithin{algorithm}{section}
+%\numberwithin{problem}{section}
+
+% Math
+
+\newcommand{\EXP}{\Eset}
+\newcommand{\R}{\mathds{R}}
+\newcommand{\C}{\mathds{C}}
+\newcommand{\F}{\mathds{F}}
+\newcommand{\N}{\mathds{N}}
+\newcommand{\Q}{\mathds{Q}}
+\newcommand{\Z}{\mathds{Z}}
+
+\newcommand{\Aset}{{\mathbb A}}
+\newcommand{\Bset}{{\mathbb B}}
+\newcommand{\Cset}{{\mathbb C}}
+\newcommand{\Dset}{{\mathbb D}}
+\newcommand{\Eset}{{\mathbb E}}
+\newcommand{\Fset}{{\mathbb F}}
+\newcommand{\Gset}{{\mathbb G}}
+%\newcommand{\Hset}{{\mathbb H}}
+\newcommand{\Iset}{{\mathbb I}}
+\newcommand{\Jset}{{\mathbb J}}
+\newcommand{\Kset}{{\mathbb K}}
+\newcommand{\Lset}{{\mathbb L}}
+\newcommand{\Mset}{{\mathbb M}}
+\newcommand{\Nset}{{\mathbb N}}
+\newcommand{\Oset}{{\mathbb O}}
+\newcommand{\Pset}{{\mathbb P}}
+%\newcommand{\Qset}{{\mathbb Q}}
+%\newcommand{\Rset}{{\mathbb R}}
+\newcommand{\Sset}{{\mathbb S}}
+\newcommand{\Tset}{{\mathbb T}}
+\newcommand{\Uset}{{\mathbb U}}
+\newcommand{\Vset}{{\mathbb V}}
+\newcommand{\Wset}{{\mathbb W}}
+\newcommand{\Xset}{{\mathbb X}}
+\newcommand{\Yset}{{\mathbb Y}}
+%\newcommand{\Zset}{{\mathbb Z}}
+
+\newcommand{\Acal}{{\mathcal A}}
+\newcommand{\Bcal}{{\mathcal B}}
+\newcommand{\Ccal}{{\mathcal C}}
+\newcommand{\Dcal}{{\mathcal D}}
+\newcommand{\Ecal}{{\mathcal E}}
+\newcommand{\Fcal}{{\mathcal F}}
+\newcommand{\Gcal}{{\mathcal G}}
+\newcommand{\Hcal}{{\mathcal H}}
+\newcommand{\Ical}{{\mathcal I}}
+\newcommand{\Jcal}{{\mathcal J}}
+\newcommand{\Kcal}{{\mathcal K}}
+\newcommand{\Lcal}{{\mathcal L}}
+\newcommand{\Mcal}{{\mathcal M}}
+\newcommand{\Ncal}{{\mathcal N}}
+\newcommand{\Ocal}{{\mathcal O}}
+\newcommand{\Pcal}{{\mathcal P}}
+\newcommand{\Qcal}{{\mathcal Q}}
+\newcommand{\Rcal}{{\mathcal R}}
+\newcommand{\Scal}{{\mathcal S}}
+\newcommand{\Tcal}{{\mathcal T}}
+\newcommand{\Ucal}{{\mathcal U}}
+\newcommand{\Vcal}{{\mathcal V}}
+\newcommand{\Wcal}{{\mathcal W}}
+\newcommand{\Xcal}{{\mathcal X}}
+\newcommand{\Ycal}{{\mathcal Y}}
+\newcommand{\Zcal}{{\mathcal Z}}
+
+% Linear Algebra
+\newcommand{\mat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\bmat}[1]{ \begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\sysmat}[4]{\left[ \begin{array}{c|c} #1 & #2 \\ \hline #3
+& #4 \end{array} \right]}
+\newcommand{\ip}[2]{\left\langle #1,#2 \right\rangle}
+\newcommand{\Tr}[1]{{\rm Tr}\left( #1 \right)}
+
+% Probability
+\newcommand{\Prob}[1]{{\bf P}\left\{#1\right\}}
+\newcommand{\E}[1]{{\bf E}\left[#1\right]}
+\newcommand{\var}[1]{\,\mbox{var}\left(#1\right)}
+\newcommand{\cov}[1]{\,\mbox{cov}\left(#1\right)}
+
+% Arrows
+\newcommand{\ra}{\rightarrow}
+\newcommand{\longra}{\longrightarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\Longra}{\Longrightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\longla}{\longleftarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Longla}{\Longleftarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\Longlra}{\Longleftrightarrow}
+
+% Formatting
+\newcommand{\ul}[1]{\underline{#1}}
+\newcounter{l1}
+\newcommand{\barablist}{\begin{list}{\arabic{l1}}{\usecounter{l1}}}
+
+% Colors
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\gray}[1]{\textcolor{gray}{#1}}
+\newcommand{\white}[1]{\textcolor{white}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+
+\newcommand{\bbf}[1]{\textcolor{blue}{\textbf{#1}}}
+\newcommand{\rbf}[1]{\textcolor{red}{\textbf{#1}}}
+
+
+% LISTS AND COUNTERS
+%\newcounter{l1}
+\newcounter{l2}
+\newcounter{l3}
+\setlength{\itemsep}{0cm} \setlength{\itemindent}{0in}
+\newcommand{\bdotlist}{\begin{list}{$\bullet$}{}}
+\newcommand{\bboxlist}{\begin{list}{$\Box$}{}}
+\newcommand{\bbboxlist}{\begin{list}{\raisebox{.005in}{{\tiny
+$\blacksquare$ \ \ }}}{}}
+\newcommand{\bdashlist}{\begin{list}{$-$}{} }
+\newcommand{\blist}{\begin{list}{}{} }
+%\newcommand{\barablist}{\begin{list}{\arabic{l1}}{\usecounter{l1}}}
+\newcommand{\balphlist}{\begin{list}{(\alph{l2})}{\usecounter{l2}}}
+\newcommand{\bAlphlist}{\begin{list}{\Alph{l2}.}{\usecounter{l2}}}
+\newcommand{\bdiamlist}{\begin{list}{$\diamond$}{}}
+\newcommand{\bromalist}{\begin{list}{(\roman{l3})}{\usecounter{l3}}}
+
+
+% Extra
+\newcommand{\ii}{{[i]}}
+\newcommand{\Lopt}[1]{\mathcal{L}^{\circ} \left( #1  \right)}
+
+% EQUATIONS AND EQUATIONS ARRAYS
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\beqa}{\begin{eqnarray}}
+\newcommand{\eeqa}{\end{eqnarray}}
+\newcommand{\beqan}{\begin{eqnarray*}}
+\newcommand{\eeqan}{\end{eqnarray*}}
+\newcommand{\dst}[1]{\displaystyle{ #1 }}
+%\renewcommand{\thesubsection}{\arabic{subsection}}

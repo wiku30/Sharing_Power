@@ -1,0 +1,32 @@
+\setbeamertemplate{blocks}[rounded][shadow=true] 
+\setbeamertemplate{items}[circle]
+\usecolortheme{orchid}
+\useoutertheme[subsection=false]{smoothbars}
+\xdefinecolor{top}{rgb}{0.85, 0.85, 1}
+\xdefinecolor{bottom}{rgb}{0.4, 0.4, 0.5}
+\xdefinecolor{title}{rgb}{0, 0, 0.65}
+\setbeamercolor{title}{fg=title,bg=top} 
+\xdefinecolor{lightgray}{rgb}{0.75, 0.75, 0.75}
+\beamersetaveragebackground{top}
+\usenavigationsymbolstemplate{}
+
+
+
+
+\defbeamertemplate*{footline}{infolines theme}
+{
+  \leavevmode%
+  \hbox{%
+%  \begin{beamercolorbox}[wd=0.5\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+%    \usebeamerfont{author in head/foot}\insertshortauthor
+%  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.4\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.1\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}
+	\centering \insertframenumber{} / \inserttotalframenumber
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+

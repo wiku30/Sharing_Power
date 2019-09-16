@@ -1,0 +1,1271 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass amsart
+\begin_preamble
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Sharing Power Storage for Undeveloped Countries
+\end_layout
+
+\begin_layout Author
+Zishuo Zhao, 2015011255
+\end_layout
+
+\begin_layout Abstract
+Motivated to provide stable power to undeveloped countries, in which the
+ grid can only keep on for a short time each day, an organization can be
+ set up to provide pooled power storage for users.
+ To make the system efficient, we proposed a mechanism to decide on the
+ capacity and charge users for their share of the total cost.
+ Differentiated from usual ideas to maximize profit, this paper is designed
+ for non-profit organizations, focusing on maximizing the social welfare
+ while charging users in a fair way to cover the cost.
+ The decision of the capacity is based on sampling---the organization randomly
+ power on part of all users for demand data with which the capacity is decided
+ on, and the optimal size of the sample is also roughly estimated with statistic
+s to trade off between sampling cost and deviation from optimal capacity
+ due to sampling errors.
+ Afterwards, the charging plan is designed for fairness, and in distinct
+ perspectives, two slightly different policies are worked out, both charging
+ for the total consumption and demand variance, and covering the total cost.
+ When the total number of users is large, it is also proved that the both
+ policies converge to a simplest idea to charge users proportional to their
+ total consumption of power, which is carried out in most modern places.
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+In the modern world, electricity is essential for daily life of citizens.
+ However, in some undeveloped countries, it is even beyond imagination to
+ have power on for 24 hours a day---although one hour or two is possible.
+ For convenience, they may buy or rent batteries to store power and have
+ lights on when power is off.
+ 
+\end_layout
+
+\begin_layout Standard
+However, it is hard for a family to decide how much power is needed each
+ day, and generally, the demand varies in different time.
+ If every house buys or rents a battery for maximum possible demand, at
+ most time some capacity is spared, leading to insufficient utilization
+ of resource---especially for poor families even strugging for the device.
+ Therefore, by sharing the storage, the risk can be pooled and the capacity
+ can be more efficiently utilized.
+\end_layout
+
+\begin_layout Standard
+In this paper, we designed a scheme to decide on the optimal capacity and
+ a corresponding policy for the storage sharing project.
+ In the scheme, the organization firstly randomly powers on 
+\begin_inset Formula $O(n^{\frac{2}{3}})$
+\end_inset
+
+ users to get informations about the energy comsumption among 
+\begin_inset Formula $n$
+\end_inset
+
+ users.
+ Based on the information, the organization decides on the capacity and
+ the detailed policy of charging.
+\end_layout
+
+\begin_layout Section
+System model
+\end_layout
+
+\begin_layout Subsection
+Description
+\end_layout
+
+\begin_layout Standard
+In an undeveloped city, the power is on only for a few hours a day.
+ To satisfie users' demands for full-day electricity supply, an organization
+ intends to set up a storage device with capacity 
+\begin_inset Formula $C$
+\end_inset
+
+ and daily cost 
+\begin_inset Formula $s$
+\end_inset
+
+.
+ When the power is on, the organization charges the storage to full, and
+ when the power is off, it provides power to users with the capacity and
+ charge them some money.
+ 
+\end_layout
+
+\begin_layout Standard
+Here, we have some assumption:
+\end_layout
+
+\begin_layout Enumerate
+The demand of user 
+\begin_inset Formula $i$
+\end_inset
+
+ is an i.i.d random variable 
+\begin_inset Formula $X_{i}\sim N(\mu_{i},\sigma_{i}^{2})$
+\end_inset
+
+, in which 
+\begin_inset Formula $\mu_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{i}$
+\end_inset
+
+ are drawn from some uniform distributions.
+\end_layout
+
+\begin_layout Enumerate
+All demands do not vary with seasons.
+ (This may be oversimplified, but in practice, the organization may undertake
+ different policies according to seasons.)
+\end_layout
+
+\begin_layout Enumerate
+If power shortage happens, the storage is allocated proportional to demands,
+ but there is an extra cost proportional to exceeding underfall, with cost
+ rate 
+\begin_inset Formula $\gamma\gg s$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Because shortage probability is low, when computing users' consumption we
+ ignore the shortage case.
+\end_layout
+
+\begin_layout Subsection
+Calculation for optimized sampling policy
+\end_layout
+
+\begin_layout Standard
+If there are 
+\begin_inset Formula $n$
+\end_inset
+
+ users, then as their consumption are independent, and we know all information
+ of their consumption distribution, we get
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}X_{i}\sim N(\sum_{i=1}^{n}\mu_{i},\sum_{i=1}^{n}\sigma_{i}^{2}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+for each day, we denote the total demand 
+\begin_inset Formula $S=\sum_{i\in[n]}X_{i}$
+\end_inset
+
+, then the opportunity cost is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+c_{op}(C_{emp})=\begin{cases}
+s(C_{emp}-S), & S\le C_{emp}\\
+\gamma(S-C_{emp}), & S>C_{emp}
+\end{cases}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To make the shortage probability below 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+, we only need to make the capacity
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C\ge\sum\mu_{i}+K_{1}\sqrt{\sum_{i=1}^{n}\sigma_{i}^{2}},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+in which the tail probability
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Q(K_{1})=\frac{s}{\gamma+s}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+based on the result of news-vendor model.
+ 
+\end_layout
+
+\begin_layout Standard
+The easiest way to decide on the optimal 
+\begin_inset Formula $C$
+\end_inset
+
+ is to gather the 
+\begin_inset Formula $\mu_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{i}$
+\end_inset
+
+ from each user.
+ But in practice, users may report strategically to maximize their own utility,
+ or more likely---to have no concept of their electricity demand, because
+ they have never enjoyed the convenience of 24-hour power before! Therefore,
+ we can experimentally power on part of users as an experiment, and get
+ useful informations for final design.
+\end_layout
+
+\begin_layout Subsubsection
+Asymptotic analyses
+\end_layout
+
+\begin_layout Standard
+The optimal capacity is 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C_{*}=\sum_{i=1}^{n}\mu_{i}+K_{1}\sqrt{\sum_{i=1}^{n}\sigma_{i}^{2}},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and we define
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C_{d}=n\cdot E[\mu]+K_{1}\sqrt{n\cdot E[\sigma_{i}^{2}]}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+By central limit theorem, for 
+\begin_inset Formula $n\to\infty$
+\end_inset
+
+, we can approximately get
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}\mu_{i}\sim N(n\cdot E[\mu],n\cdot Var[\mu]).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+By 
+\begin_inset Formula $3\sigma$
+\end_inset
+
+ principle, it is almost sure that
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left|\sum_{i=1}^{n}\mu_{i}-nE[\mu]\right|<3\sqrt{n\cdot Var[\mu]},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and similarly, it is almost sure that
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left|\sum_{i=1}^{n}\sigma_{i}^{2}-nE[\sigma^{2}]\right|<3\sqrt{n\cdot Var[\sigma^{2}]}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Therefore, we can approximate 
+\begin_inset Formula $\frac{1}{n}\sum_{i=1}^{n}\mu_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $\frac{1}{n}\sum_{i=1}^{n}\sigma_{i}^{2}$
+\end_inset
+
+ with 
+\begin_inset Formula $E[\mu]$
+\end_inset
+
+ and 
+\begin_inset Formula $E[\sigma_{i}^{2}]$
+\end_inset
+
+ respectively, with roughly 
+\begin_inset Formula $\frac{1}{\sqrt{n}}$
+\end_inset
+
+ error.
+\end_layout
+
+\begin_layout Standard
+Now we consider a fixed random subset 
+\begin_inset Formula $M\in[n]$
+\end_inset
+
+ with 
+\begin_inset Formula $|M|=m$
+\end_inset
+
+, for 
+\begin_inset Formula $m\to\infty$
+\end_inset
+
+ and 
+\begin_inset Formula $m=o(n)$
+\end_inset
+
+, by central limit theorem,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E_{i\in M}[\mu_{i}]\sim N(E[\mu],\frac{Var[\mu]}{m})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E_{i\in M}[\sigma_{i}^{2}]\sim N(E[\sigma_{i}^{2}],\frac{Var[\sigma_{i}^{2}]}{m}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Based on 
+\begin_inset Formula $E_{i\in[M]}[\mu_{i}]$
+\end_inset
+
+ and 
+\begin_inset Formula $E_{i\in[M]}[\sigma_{i}^{2}]$
+\end_inset
+
+, the organization decides on the capacity
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C_{emp}=nE_{i\in M}[\mu_{i}]+K_{2}\sqrt{nE_{i\in M}[\sigma_{i}^{2}]}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+So
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var[nE_{i\in M}[\mu_{i}]]=n^{2}\frac{Var[\mu]}{m}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var\left[K_{1}\sqrt{nE_{i\in M}[\sigma_{i}^{2}]}\right]\approx\frac{n^{2}Var[\sigma_{i}^{2}]}{4m\cdot E^{2}[\sqrt{n\sum_{i\in m}\sigma_{i}^{2}}]}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For 
+\begin_inset Formula $n\to+\infty$
+\end_inset
+
+, the influence of fluctuation of 
+\begin_inset Formula $K_{1}\sqrt{nE_{i\in M}[\sigma_{i}^{2}]}$
+\end_inset
+
+ is negligible, and 
+\begin_inset Formula $\left|\sqrt{Var[A+B]}-\sqrt{Var[A]}\right|\le\sqrt{Var[B]}$
+\end_inset
+
+ so we have
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var[C_{emp}]=n^{2}\frac{Var[\mu]}{m}(1+o(1))
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+E[(C_{emp}-C_{*})^{2}] & = & E[(C_{emp}-C_{d}+O(\frac{1}{\sqrt{n}}))^{2}]\\
+ & = & Var[C_{emp}](1+o(1))\\
+ & = & n^{2}\frac{Var[\mu]}{m}(1+o(1)).
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Arguments for sampling
+\end_layout
+
+\begin_layout Standard
+In fact, for 
+\begin_inset Formula $m\ll n$
+\end_inset
+
+, with high probability the difference between 
+\begin_inset Formula $C_{*}$
+\end_inset
+
+ and 
+\begin_inset Formula $C_{d}$
+\end_inset
+
+ is negligible compared to the fluctuation of 
+\begin_inset Formula $C_{emp}$
+\end_inset
+
+, so when considering the cost due to the error of 
+\begin_inset Formula $C_{emp}$
+\end_inset
+
+, we can assume 
+\begin_inset Formula $C_{*}=C_{d}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+To get correct usage data for the sample, we should provide them with enough
+ power---more than the optimal capacity.
+ For early construction and data analysis for the sample, there will be
+ some cost, roughly proportional to the sample size 
+\begin_inset Formula $m$
+\end_inset
+
+.
+ On the other hand, the larger sample will obtain a more accurate estimation
+ of parameters and less cost of policy deviation, and it has been proved
+ that the range of sampling error is roughly 
+\begin_inset Formula $\frac{n}{\sqrt{m}},$
+\end_inset
+
+ while the deviation from users' random consumption is proportional to 
+\begin_inset Formula $\sqrt{n}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Firstly, we consider a case where 
+\begin_inset Formula $\sigma_{i}=0$
+\end_inset
+
+ for any 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ In this case, the total demand is fixed, so the error cost is proportional
+ to the error of 
+\begin_inset Formula $C_{emp}$
+\end_inset
+
+.
+ Therefore, the total cost of sampling process and sampling error is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+c_{spl}=\Theta(m)+\Theta(\frac{n}{\sqrt{m}}),
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+we can get
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+m_{opt}=\Theta(n^{\frac{2}{3}}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Besides, in general cases, for 
+\begin_inset Formula $m=o(n)$
+\end_inset
+
+ and 
+\begin_inset Formula $n\to\infty$
+\end_inset
+
+, 
+\begin_inset Formula $\frac{n}{\sqrt{m}}\gg\sqrt{n}$
+\end_inset
+
+, so we can still regard the total demand as fixed (as in the figure below).
+ Therefore, generally, the optimal sample size is 
+\begin_inset Formula $\Theta(n^{\frac{2}{3}}).$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Graphics
+	filename C:/Users/wiku30/Desktop/17小学期/latex-portrait-poster_47701706/latex-portrait-poster/pic/error.png
+	display false
+	width 7cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In practice, the exact size of optimal sampling varies with many aspects.
+ For example, it decreases when sampling cost increases, and increases when
+ consumption varies among users more widely.
+\end_layout
+
+\begin_layout Subsubsection
+Special sampling case
+\end_layout
+
+\begin_layout Standard
+In general cases where 
+\begin_inset Formula $n\to+\infty$
+\end_inset
+
+, the optimal 
+\begin_inset Formula $m$
+\end_inset
+
+ increases in the order of 
+\begin_inset Formula $n^{\frac{2}{3}}$
+\end_inset
+
+.
+ This result is based on the fact that when 
+\begin_inset Formula $n\to+\infty$
+\end_inset
+
+ and 
+\begin_inset Formula $m=o(n)$
+\end_inset
+
+, the sampling error takes the main part.
+ However, when 
+\begin_inset Formula $n$
+\end_inset
+
+ is not so large, we cannot ignore the effect of demand fluctuation, the
+ result can be different.
+\end_layout
+
+\begin_layout Standard
+Now we consider another extreme case, where the demand fluctuation takes
+ the main part.
+ Then, the sampling error leads to a small deviation from the optimal fractile
+ in the SPP model.
+ Take 
+\begin_inset Formula $\frac{C_{emp}-C_{*}}{\sqrt{\sum_{i=1}^{n}\sigma_{i}^{2}}}\to0$
+\end_inset
+
+, the CDF can be approximated to be linear around 
+\begin_inset Formula $C_{*}$
+\end_inset
+
+, then the cost of sampling error is in the order of 
+\begin_inset Formula $(\frac{n}{\sqrt{m}})^{2}=\frac{n^{2}}{m}.$
+\end_inset
+
+ In this case, we have
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+m_{opt}\sim n.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here we have characterized the pattern of optimal sample size 
+\begin_inset Formula $m$
+\end_inset
+
+.
+ For fixed distributions, when 
+\begin_inset Formula $n$
+\end_inset
+
+ is small, 
+\begin_inset Formula $m$
+\end_inset
+
+ is roughly proportional to 
+\begin_inset Formula $n$
+\end_inset
+
+, and when 
+\begin_inset Formula $n$
+\end_inset
+
+ is large enough, 
+\begin_inset Formula $m$
+\end_inset
+
+ increases with 
+\begin_inset Formula $n^{\frac{2}{3}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Policy for payment
+\end_layout
+
+\begin_layout Standard
+In previous parts we have only discuss about how to decide on the (approximately
+) optimal storage capacity.
+ In practice, it costs much money for setting up the device.
+ In this part, we discuss about how much money should be charged from each
+ user 
+\begin_inset Formula $i$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Here we have some assumptions:
+\end_layout
+
+\begin_layout Enumerate
+The organization knows the distribution of 
+\begin_inset Formula $\mu_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{i}$
+\end_inset
+
+ accurately, and the capacity decided on (
+\begin_inset Formula $C_{emp}$
+\end_inset
+
+) is the optimal value 
+\begin_inset Formula $C_{*}$
+\end_inset
+
+, ignoring errors discussed in previous parts.
+ (In fact, 
+\begin_inset Formula $C_{emp}$
+\end_inset
+
+ is a first-order unbiased estimation of 
+\begin_inset Formula $C$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $E_{i\in[n]}[\mu_{i}]=E[\mu]$
+\end_inset
+
+, 
+\begin_inset Formula $E_{i\in[n]}[\sigma_{i}^{2}]=E[\sigma_{i}^{2}]$
+\end_inset
+
+, implying 
+\begin_inset Formula $C_{*}=C_{d}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+All costs are amortized to every day, and daily cost is 
+\begin_inset Formula $s\cdot C_{*}$
+\end_inset
+
+, proportional to the capacity.
+\end_layout
+
+\begin_layout Enumerate
+We only discuss about the cost of device.
+ The cost of electricity itself is evidently paid by each user according
+ to consumption.
+\end_layout
+
+\begin_layout Enumerate
+Users' demands are not affected by prices, and the organization does not
+ mean to make profit.
+ It charges only to cover the cost.
+\end_layout
+
+\begin_layout Standard
+The general idea is to charge users for the part of devices that they demand,
+ although the actual policy can be a little different.
+ because adding new users leads to better risk pooling and better utilization,
+ while each user should be charged in a fair way, while the organization
+ should have its costs covered.
+\end_layout
+
+\begin_layout Subsection
+The payment policy based on contribution
+\end_layout
+
+\begin_layout Standard
+In the policy, users are charged for every 
+\begin_inset Formula $T-$
+\end_inset
+
+day period.
+ We assume that in each period all 
+\begin_inset Formula $\mu_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{i}$
+\end_inset
+
+ remains constant, while in different periods they can vary under the restrictio
+n Assumption 2.
+ During the 
+\begin_inset Formula $T-$
+\end_inset
+
+day period, we compute all 
+\begin_inset Formula $\mu_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{i}^{2}$
+\end_inset
+
+ with formulae
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{\mu_{i}}=\frac{1}{T}\sum_{t=1}^{T}X_{i}(t)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{\sigma_{i}^{2}}=\frac{1}{T-1}\sum_{t=1}^{T}(X_{i}(t)-\mu_{i}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here, 
+\begin_inset Formula $\hat{\mu_{i}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{\sigma_{i}^{2}}$
+\end_inset
+
+ are unbiased estimations of 
+\begin_inset Formula $\mu_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{i}^{2}$
+\end_inset
+
+.
+ In following calculations, we regard them as the accurate value, and the
+ results have no first-order bias.
+\end_layout
+
+\begin_layout Standard
+Amortized in each day, the cost of the device is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+W & = & s\cdot C_{*}\\
+ & = & s\cdot\left(\sum_{i=1}^{n}\mu_{i}+K_{1}\sqrt{\sum_{i=1}^{n}\sigma_{i}^{2}}\right).
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Considering the contribution of user 
+\begin_inset Formula $i$
+\end_inset
+
+ to 
+\begin_inset Formula $W$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial W}{\partial\mu_{i}}=s
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial W}{\partial\sigma_{i}}=s\cdot K_{1}\frac{\sigma_{i}}{\sqrt{\sum_{i=1}^{n}\sigma_{i}^{2}}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A first order approximation of user 
+\begin_inset Formula $i$
+\end_inset
+
+ to 
+\begin_inset Formula $W$
+\end_inset
+
+ is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+w_{i}=s\cdot\left(\mu_{i}+K_{1}\frac{\sigma_{i}^{2}}{2\sqrt{\sum_{i=1}^{n}\sigma_{i}^{2}}}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+However, when we add all 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ up,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\sum_{i=1}^{n}w_{i} & = & s\cdot\sum_{i=1}^{n}\left(\mu_{i}+K_{1}\frac{\sigma_{i}^{2}}{2\sqrt{\sum_{j=1}^{n}\sigma_{j}^{2}}}\right)\\
+ & = & s\cdot\left(\sum_{i=1}^{n}\mu_{i}+\frac{K_{1}}{2}\sqrt{\sum_{i=1}^{n}\sigma_{i}^{2}}\right)\\
+ & < & W.
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is due to the risk-pooling effect.
+ When we share more, the capacity can be more efficiently utilized, and
+ the marginal cost for new users decreases.
+ But the organization should have its costs covered, so we have the daily
+ payment adjusted as following:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+w_{i}^{(1)}=s\cdot\left(\mu_{i}+K_{1}\frac{\sigma_{i}^{2}}{\sqrt{\sum_{i=1}^{n}\sigma_{i}^{2}}}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+then the cost-covering condition can be satisfied:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}w_{i}^{(1)}=W.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Although slightly altered, this payment rule still reflects the relationship
+ between usage and cost: the contribution of one user to the total cost
+ consists of two parts--- the first part is the basic storage, which equals
+ to its expected demand; the second part is risk-reserving storage, which
+ is proportional to the square of the standard deviation of its demand.
+\end_layout
+
+\begin_layout Subsection
+An alternative policy considering Opportunity Fairness 
+\end_layout
+
+\begin_layout Standard
+In the policy above, User 1 may argue: I use exactly twice as much electricity
+ as User 2, but my variance cost is 4 times of 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ That is unfair! 
+\end_layout
+
+\begin_layout Standard
+In the organization's perspective, the policy is fair.
+ Although User 1 uses twice as much electricity as User 2, the organization
+ has to set up more than twice the capacity for User 1 than User 2, so charging
+ more is fair.
+ However, in users' perspective, under the Veil of Ignorance, the behavior
+ of User 1 is indifferentiable from two identical User 2.
+ The difference of payment is only due to the syncrony of the two, which
+ brings more cost to the organizer because it is bad for risk-pooling.
+\end_layout
+
+\begin_layout Standard
+Has User 1 done anything wrong? No.
+ The extra cost is due to the sharing mechanism, not the user.
+ So in the perspective of users, or the fairness of outcome, User 1 should
+ pay twice as much as User 2.
+ Nevertheless, it is still true that more deviation leads to more cost,
+ so the cost for risk-reserving storage should be paid by users, but in
+ this perspective, it is more fair to be allocated proportional to 
+\begin_inset Formula $\sigma_{i}$
+\end_inset
+
+, not 
+\begin_inset Formula $\sigma_{i}^{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Therefore, user 
+\begin_inset Formula $i$
+\end_inset
+
+ should pay
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+w_{i}^{(2)}=s\cdot\left(\mu_{i}+K_{1}\frac{\sigma_{i}\sqrt{\sum_{i=1}^{n}\sigma_{i}^{2}}}{\sum_{i=1}^{n}\sigma_{i}}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+for each day.
+\end_layout
+
+\begin_layout Subsection
+Conclusion
+\end_layout
+
+\begin_layout Standard
+In this part, we have derived three payment policies.
+ 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ is the shadow price of the entrance of 
+\begin_inset Formula $i$
+\end_inset
+
+, but due to the scale effect of the system, after removing some users,
+ the shadow prices of other users increase, so this policy cannot cover
+ the total cost; 
+\begin_inset Formula $w_{i}^{(1)}$
+\end_inset
+
+ is based on the shadow price and observes the fairness of outcome, and
+ 
+\begin_inset Formula $w_{i}^{(2)}$
+\end_inset
+
+ still considers the cost of expected demand and variance but respects the
+ fairness of opportunity more.
+ All policies are fairly reasonable in some way, but none of them are 
+\begin_inset Quotes eld
+\end_inset
+
+perfect
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Generally speaking, the conflict of the 
+\begin_inset Quotes eld
+\end_inset
+
+fairness of outcome
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+fairness of opportunity
+\begin_inset Quotes erd
+\end_inset
+
+ is an eternal conflict in society.
+\end_layout
+
+\begin_layout Standard
+However, we can notice that when 
+\begin_inset Formula $n\to\infty$
+\end_inset
+
+, the cost of risk pooling for every person is diminishing, and 
+\begin_inset Formula $w_{i},\,w_{i}^{(1)},\,w_{i}^{(2)}$
+\end_inset
+
+ all converge to 
+\begin_inset Formula $s\cdot\mu_{i}$
+\end_inset
+
+.
+ It shows that when we share more, there will be not only more efficiency,
+ but also fewer conflicts.
+\end_layout
+
+\begin_layout Section
+Acknowledgements
+\end_layout
+
+\begin_layout Standard
+This project is mainly based on lecture materials and my knowledge in statistics
+, so I have not directly referred to literature.
+ Nevertheless, in the process of completing this project, I did gain a lot
+ of inspiration and wisdom from teachers (Chenye Wu and Yang Yu), and many
+ classmates.
+\end_layout
+
+\end_body
+\end_document
